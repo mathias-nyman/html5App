@@ -1,0 +1,5 @@
+
+# ignore none from here onwards
+!*/
+!.gitignore
+!*

@@ -1,0 +1,82 @@
+
+----------------------------------------------------------------
+------------------------               -------------------------
+------------------------   html5App    -------------------------
+------------------------               -------------------------
+----------------------------------------------------------------
+
+
+----------------------------------------------------------------
+OVERVIEW:
+
+An example PURE PYTHON approach to html5 web-development.
+
+Both client and server side code are pure python. A big thanks
+to Pyjamas and Django for making this possible.
+
+
+----------------------------------------------------------------
+DEPENDENCIES:
+
+Dependencies that are considered to be part of a normal 
+development environment are not handled by the accompanied
+depedency installer. At least the following needs to be inplace:
+
+  git, svn, java (jre), python, python-setuptools
+
+On Ubuntu the above packages could be installed by something like:
+  
+  sudo apt-get install git-core subversion openjdk-6-jre python \
+                       python-setuptools
+
+To install all other dependencies, in the project root directory
+issue:
+
+  make dependencies
+
+This will install Django, Django-mediagenerator, Pyjamas,
+YUI Compressor and httplib2.
+
+Hulahop might be a problem on Ubuntu, so if you see problems
+that mention hulahop, check out the help on:
+
+  http://code.google.com/p/pyjamas/wiki/PyjamasUbuntu
+
+
+----------------------------------------------------------------
+ENVIRONMENT:
+
+In order to add some critical paths to PYTHONPATH and PATH
+environment variables, in the project root directory issue:
+
+  cd util; source env.sh; cd -
+
+
+----------------------------------------------------------------
+RUN:
+
+To run the WebApp in a development webserver, in the project
+root issue:
+
+  make run
+
+----------------------------------------------------------------
+DEPLOY:
+
+Before deploying the WebApp one will want to generate and 
+compress all development files, to do this, in the project
+root issue:
+
+  make production
+
+
+----------------------------------------------------------------
+READINGS:
+
+If you are new Pyjamas, some recommended readings:
+ 
+  http://pyjs.org/book/output/Bookreader.html
+  http://pyjs.org/examples/kitchensink/output/KitchenSink.html
+
+
+----------------------------------------------------------------

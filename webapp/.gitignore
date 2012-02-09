@@ -1,0 +1,9 @@
+# editor temp files
+*.swp
+
+# compile sources
+*.pyc
+
+# the database
+oviValpas.db
+

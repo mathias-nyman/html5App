@@ -1,0 +1,7 @@
+
+# ignore all except one modified generated html
+*
+!*/
+!.gitignore
+!ExampleApp.html
+!ExampleApp.css
