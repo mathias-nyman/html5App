@@ -5,5 +5,5 @@
 *.pyc
 
 # the database
-oviValpas.db
+ExampleApp.db
 

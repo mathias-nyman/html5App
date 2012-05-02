@@ -19,7 +19,7 @@ class ExampleApp:
         RootPanel().add(self.defaultView)
 
         # TODO: could demonstrate removing and adding smth else also
-        #RootPanel().remove(self.exampleView)
+        #RootPanel().remove(self.defaultView)
 
 
 # Set up the JSONProxy service and specify the function calls
