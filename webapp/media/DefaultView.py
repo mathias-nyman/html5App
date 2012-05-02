@@ -3,6 +3,7 @@ import pyjd
 from pyjamas.ui.Label import Label
 from pyjamas.ui.Button import Button
 from pyjamas.ui.HorizontalPanel import HorizontalPanel
+from pyjamas.ui.VerticalPanel import VerticalPanel
 from pyjamas.ui.ClickListener import ClickHandler
 from pyjamas.ui import HasAlignment
 from pyjamas import Window
@@ -15,15 +16,21 @@ from ExampleObjectFlexTable import ExampleObjectFlexTable
 
 class DefaultView(HorizontalPanel, ClickHandler):
     def __init__(self, remote):
-        HorizontalPanel.__init__(self, BorderWidth=1,
+        HorizontalPanel.__init__(self, BorderWidth=0,
                                        HorizontalAlignment=HasAlignment.ALIGN_LEFT,
-                                       VerticalAlignment=HasAlignment.ALIGN_MIDDLE,
-                                       Width="100%",
-                                       Height="100%")
+                                       VerticalAlignment=HasAlignment.ALIGN_TOP)
 
         # Catch all clicks to the entire panel
         ClickHandler.__init__(self)
         self.addClickListener(getattr(self, "screenClicked"))
+
+        # A panel to hold the main content
+        self.middlePanel = VerticalPanel(BorderWidth=0,
+                                         HorizontalAlignment=HasAlignment.ALIGN_CENTER,
+                                         VerticalAlignment=HasAlignment.ALIGN_TOP)
+
+        # Some text
+        self.heading = Label('An example html5App')
 
         # A flex table for the example objects
         self.exampleObjectFlexTable = ExampleObjectFlexTable()
@@ -38,9 +45,14 @@ class DefaultView(HorizontalPanel, ClickHandler):
         # An analog clock demonstrating canvas usage
         self.clockCanvas = ClockCanvas('images/chrome_clock_and_numbers.png')
 
+        # Assemble middlePanel
+        self.middlePanel.add(self.heading)
+        self.middlePanel.add(self.exampleObjectFlexTable)
+
         # Assemble self
         self.add(self.clockCanvas)
-        self.add(self.exampleObjectFlexTable)
+        self.add(self.middlePanel)
+        self.remote.getExampleObjects(self)
 
 
     def playSound(self):
@@ -65,7 +77,7 @@ class DefaultView(HorizontalPanel, ClickHandler):
 
         method = request_info.method
         if method == 'getExampleObjects':
-            self.exampleObjectFlex.cleanTable()
+            self.exampleObjectFlexTable.cleanTable()
             for obj in response:
                 self.exampleObjectFlexTable.addExampleObject(ExampleObject(obj, response[obj]))
         elif method == 'saveExampleObject':
