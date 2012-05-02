@@ -2,6 +2,7 @@ import pyjd
 
 from pyjamas.ui.Label import Label
 from pyjamas.ui.Button import Button
+from pyjamas.ui.TextBox import TextBox
 from pyjamas.ui.HorizontalPanel import HorizontalPanel
 from pyjamas.ui.VerticalPanel import VerticalPanel
 from pyjamas.ui.ClickListener import ClickHandler
@@ -31,6 +32,15 @@ class DefaultView(HorizontalPanel, ClickHandler):
 
         # Some text
         self.heading = Label('An example html5App')
+        self.shortExplanation = Label("""
+On the right you see a HTML5 Canvas which updates syncronously.
+Beneath is an example of communicating between the client and server
+using JSON.
+""")
+
+        # The text box and button to Add some stuff with JSON
+        self.textToAdd = TextBox()
+        self.addTextButton = Button('Click me!', self.addText)
 
         # A flex table for the example objects
         self.exampleObjectFlexTable = ExampleObjectFlexTable()
@@ -47,13 +57,32 @@ class DefaultView(HorizontalPanel, ClickHandler):
 
         # Assemble middlePanel
         self.middlePanel.add(self.heading)
+        self.middlePanel.add(self.shortExplanation)
         self.middlePanel.add(self.exampleObjectFlexTable)
+        self.middlePanel.add(self.textToAdd)
+        self.middlePanel.add(self.addTextButton)
 
         # Assemble self
         self.add(self.clockCanvas)
         self.add(self.middlePanel)
         self.remote.getExampleObjects(self)
 
+        # Listen for keyboard events in the input box
+        self_addText = self.addText
+        class TextToAdd_KeyboardHandler():
+            def onKeyPress(self, sender, keycode, modifiers):
+                if keycode == KEY_ENTER:
+                    self_addText()
+            def onKeyDown(self, sender, keycode, modifiers): return
+            def onKeyUp(self, sender, keycode, modifiers): return
+        self.textToAdd.addKeyboardListener(TextToAdd_KeyboardHandler())
+
+
+    def addText(self, sender=None):
+        text = self.textToAdd.getText()
+        if text is not None:
+            self.saveExampleObject(self, text.trim())
+ 
 
     def playSound(self):
         self.audioElement.play()
