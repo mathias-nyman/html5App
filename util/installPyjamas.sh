@@ -5,8 +5,8 @@
 # dev source under the ~/.local directory.
 #--------------------------------------------#
 
-dlUrl='git://pyjs.org/git/pyjamas.git'
-extractFolder='pyjamas'
+dlUrl='git@github.com:pyjs/pyjs.git'
+extractFolder='pyjs'
 thisDir="$( cd "$( dirname "$0" )" && pwd )"
 installDir=${thisDir}/../ext/
 echo $installDir
