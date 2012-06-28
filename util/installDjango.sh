@@ -6,13 +6,13 @@
 #--------------------------------------------#
 
 tmpDir="/tmp/$USER-django-install"
-dlUrl='http://code.djangoproject.com/svn/django/trunk/'
-name='django-trunk'
+dlUrl='git://github.com/django/django.git'
+name='django'
 
 rm -rf $tmpDir
 mkdir -p $tmpDir
 cd $tmpDir
-svn co $dlUrl $name
+git clone $dlUrl
 
 cd $name
 python setup.py install --user
