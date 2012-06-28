@@ -2,8 +2,8 @@
 
 #add the .local and ../ext to path
 scriptDir="$(pwd)"
-pyjamasDir="$scriptDir/../ext/pyjamas/bin"
-pyjamasLib="$scriptDir/../ext/pyjamas/library"
+pyjamasDir="$scriptDir/../ext/pyjs/bin"
+pyjamasLib="$scriptDir/../ext/pyjs/library"
 djangoDir="$scriptDir/../"
 oviValpasDir="$scriptDir/../webapp"
 

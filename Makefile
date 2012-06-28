@@ -13,7 +13,7 @@ default: dummy
 
 compile:
 	@ echo "Compiling Pyjamas code to JavaScript."
-	@ cd webapp/media; ../../ext/pyjamas/bin/pyjsbuild ExampleApp
+	@ cd webapp/media; ../../ext/pyjs/bin/pyjsbuild ExampleApp
 
 
 # Will run the development server
