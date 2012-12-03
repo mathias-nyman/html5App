@@ -1,8 +1,8 @@
 class ExampleObject:
-    def __init__(self, name, pic):
+    def __init__(self, name, value):
         assert isinstance(name, str)
-        assert isinstance(pic, str)
+        assert isinstance(value, str)
         
         self.name = name 
-        self.pic = pic
+        self.value = value
 

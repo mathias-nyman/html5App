@@ -6,10 +6,14 @@
 # Try to determine IP address to broadcast on
 # TODO: get active ip_address in a better way!
 IP_ADDRESS=$(shell ifconfig wlan0 | /bin/grep -P " addr:\d+\.\d+.\.\d+\.\d+" | cut -d: -f2 | cut -d' ' -f1)
+ifeq ($(strip $(IP_ADDRESS)),)
+	IP_ADDRESS=$(shell ifconfig eth0 | /bin/grep -P " addr:\d+\.\d+.\.\d+\.\d+" | cut -d: -f2 | cut -d' ' -f1)
+endif
+
 PORT = 8000
 
 
-default: dummy
+default: run
 
 compile:
 	@ echo "Compiling Pyjamas code to JavaScript."
@@ -19,6 +23,7 @@ compile:
 # Will run the development server
 run: compile
 	@ echo "Running development server"
+	@ echo "Broadcast address:port : $(IP_ADDRESS):$(PORT)"
 	@ cd webapp; python manage.py syncdb
 	@ cd webapp; python manage.py runserver
 
@@ -44,10 +49,11 @@ dependencies:
 	./util/installLibCommonDjango.sh
 	easy_install --prefix=~/.local httplib2
 
+crawlers:
+	@ echo "Running crawlers."
+	@ cd util; source env.sh; cd -; python crawlers/ExampleCrawler.py
+
 clean:
 	@$(RM) -rf **/*.pyc
 
-dummy:
-	@ echo "Dummy target, see my real targets!"
-	@ echo "Broadcast address:port : $(IP_ADDRESS):$(PORT)"
-
+.PHONY: crawlers

@@ -7,14 +7,16 @@ body, html {
     background-color: white;
 }
 
-.rfidTagsFlexTable {
-    width: 100%;
+.blackOnGreen {
+    font-size: 18px;
+    background-color: #66FF66;
+    border: 2px solid black;
 }
 
-.flexTableItem {
-    font-size: 32px;
-    background-color: #66FF66;
-    border: 20px solid white;
+.blackOnRed {
+    font-size: 18px;
+    background-color: #ff5959;
+    border: 2px solid black;
 }
 
 

@@ -24,10 +24,7 @@ class ExampleApp:
 
 # Set up the JSONProxy service and specify the function calls
 class DataService(JSONProxy):
-    methods = ['getExampleObjects', 
-               'saveExampleObject', 
-               'removeExampleObject',
-               'getAllPics']
+    methods = ['getExampleObjects']
     
     def __init__(self):
         JSONProxy.__init__(self, 'services/', DataService.methods)
